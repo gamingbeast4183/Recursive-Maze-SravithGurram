@@ -12,7 +12,7 @@ import java.io.File;
  */
 public class PrintMaze
 {
-    private static final String DATA_FILE = "maze1.txt";
+    private static final String DATA_FILE = "./maze3.txt";
     private static Scanner in;
     
     /**
@@ -48,13 +48,41 @@ public class PrintMaze
 
     }
     
-    public static char[] [] readFile() {
-        String Rows = readString();
-        String Columns = readString();
-        int numRows = Integer.parseInt(Rows);
-        int numColumns = Integer.parseInt(Columns);
-        
-        char[][] maze = new char[numRows + 2][numColumns + 2];
+    public static char[] [] cottonPicker() {
+         int numrow = Integer.parseInt(readString().trim());
+        int numcol = Integer.parseInt(readString().trim());
+        char[][] maze = new char[numrow + 2][numcol + 2];
+        for (int i = 0; i < maze[0].length; i++) {
+            maze[0][i] = '@';
+            maze[maze.length - 1][i] = '@';
+        }
+        for (int i = 0; i < maze.length; i++) {
+            maze[i][0] = '@';
+            maze[i][maze[0].length - 1] = '@';
+        }
+        for (int i = 1; i < maze.length - 1; i++) {
+            for (int j = 1; j < maze[0].length - 1; j++) {
+                maze[i][j] = '.';
+            }
+        }
+        String line = readString();
+        while (line != null) {
+            String[] splitString = line.split("\\s");
+            int row = Integer.parseInt(splitString[0]) + 1;
+            int col = Integer.parseInt(splitString[1]) + 1;
+            maze[row][col] = '@';
+            line = readString();
+        }
         return maze;
+        
     }
+    
+    public static void cotton() {
+    String line = readString();
+    while (line != null) {
+        System.out.println(line);
+        line = readString();
+    }
+}
+
 }
