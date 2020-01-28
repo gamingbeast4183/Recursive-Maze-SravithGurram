@@ -13,8 +13,8 @@ import java.io.File;
 public class PrintMaze
 {
     private static final String DATA_FILE = "maze1.txt";
-
     private static Scanner in;
+    
     /**
      * Opens a file to be used for input (if not already open),
      * reads a line from the file, and returns the entire line of data.
@@ -49,7 +49,12 @@ public class PrintMaze
     }
     
     public static char[] [] readFile() {
-        readString();
-        readString();
+        String Rows = readString();
+        String Columns = readString();
+        int numRows = Integer.parseInt(Rows);
+        int numColumns = Integer.parseInt(Columns);
+        
+        char[][] maze = new char[numRows + 2][numColumns + 2];
+        return maze;
     }
 }
