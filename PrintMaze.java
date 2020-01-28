@@ -1,33 +1,55 @@
+/**
+ * Reads maze files
+ */
+import java.util.Scanner;
+import java.io.File;
 
 /**
- * Write a description of class PrintMaze here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * Convenience class for getting input from the mymedia.txt file
+ * 
+ * @author ckinnard
+ * @version 3/5/16
  */
 public class PrintMaze
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    private static final String DATA_FILE = "maze1.txt";
 
+    private static Scanner in;
     /**
-     * Constructor for objects of class PrintMaze
+     * Opens a file to be used for input (if not already open),
+     * reads a line from the file, and returns the entire line of data.
+     * 
+     * @return a line of text from the input file
      */
-    public PrintMaze()
-    {
-        // initialise instance variables
-        x = 0;
+    public static String readString() {
+        if (in == null) {
+            try {
+                in = new Scanner(new File(DATA_FILE));
+            }
+            catch (Exception e) {
+                System.err.println("Cannot open file for input!");
+                e.printStackTrace();
+            }
+        }
+        try {
+            if (in.hasNext()) {
+                String s = in.nextLine();
+                return s;
+            }
+            else {
+                return null;
+            }
+        }
+        catch (Exception e) {
+            System.err.println("Cannot read  file!");
+            e.printStackTrace();
+        }
+        return null;
+
     }
-
-    /**
-     * An example of a method - replace this comment with your own
-     *
-     * @param  y  a sample parameter for a method
-     * @return    the sum of x and y
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
+    
+    public static char[] [] readFile() {
+        readString();
+        readString();
     }
 }
